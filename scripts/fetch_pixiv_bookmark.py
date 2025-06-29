@@ -6,6 +6,10 @@ USERNAME = os.environ['PIXIV_USERNAME']
 PASSWORD = os.environ['PIXIV_PASSWORD']
 USER_ID = 94687683  # <-- Replace this with your actual Pixiv user ID
 
+print(f"USERNAME: {USERNAME}")
+print(f"PASSWORD: {'*' * len(PASSWORD)}")  # don't print password directly
+
+
 api = AppPixivAPI()
 api.login(USERNAME, PASSWORD)
 
