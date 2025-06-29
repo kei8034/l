@@ -48,11 +48,32 @@
     .gallery img:hover {
       opacity: 0.9;
     }
+
+    .home-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #222;
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      border: 1px solid #444;
+      z-index: 9999;
+      transition: background 0.2s ease;
+    }
+
+    .home-button:hover {
+      background: #333;
+    }
   </style>
 </head>
 <body>
 
-  <h1>LewdCreationsAI Tweet Gallery</h1>
+  <a href="index.html" class="home-button">Home</a>
+
+  <h1>luna Tweet Gallery</h1>
   <input type="text" id="searchBar" placeholder="Search by tweet label... (e.g. 'Tweet 3')" />
 
   <div class="gallery" id="imageGallery">
@@ -97,7 +118,9 @@
       const images = gallery.querySelectorAll('a');
 
       images.forEach(anchor => {
-        const alt = anchor.querySelector('img').alt.toLowerCase();
+        const img = anchor.querySelector('img');
+        if (!img) return; // skip if not an image
+        const alt = img.alt.toLowerCase();
         anchor.style.display = alt.includes(query) ? 'block' : 'none';
       });
     });
