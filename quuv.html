@@ -32,12 +32,15 @@
       color: white;
     }
 
-    .gallery a {
+    .gallery a,
+    .video-container {
       display: block;
       margin-bottom: 30px;
+      position: relative;
     }
 
-    .gallery img {
+    .gallery img,
+    .video-container video {
       width: 100%;
       height: auto;
       display: block;
@@ -47,6 +50,19 @@
 
     .gallery img:hover {
       opacity: 0.9;
+    }
+
+    .mute-toggle {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -62,18 +78,22 @@
     <a href="https://x.com/q_u_u_v/status/1874725158621167898/photo/2" target="_blank">
       <img src="https://pbs.twimg.com/media/GgRclQZaIAAJDYn?format=jpg&name=4096x4096" alt="plain" />
     </a>
-    <a href="https://x.com/q_u_u_v/status/1874724295966064692/video/1" target="_blank">
-  <video
-    src="https://files.catbox.moe/l2mzv9.mp4"
-    autoplay
-    loop
-    muted
-    playsinline
-    data-alt="video"
-    style="width: 100%; height: auto; border-radius: 12px;"
-  ></video>
-</a>
-    </a>
+
+    <!-- Video with mute button -->
+    <div class="video-container">
+      <a href="https://x.com/q_u_u_v/status/1874724295966064692/video/1" target="_blank">
+        <video
+          src="https://files.catbox.moe/l2mzv9.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          data-alt="video"
+        ></video>
+      </a>
+      <button class="mute-toggle">🔇</button>
+    </div>
+
     <a href="https://x.com/q_u_u_v/status/1807061758022127757/photo/1" target="_blank">
       <img src="https://pbs.twimg.com/media/GRP5FgJacAAYzZs?format=jpg&name=4096x4096" alt="dil" />
     </a>
@@ -98,16 +118,30 @@
   </div>
 
   <script>
+    // Search bar functionality
     const searchBar = document.getElementById('searchBar');
     const gallery = document.getElementById('imageGallery');
 
     searchBar.addEventListener('input', function () {
       const query = this.value.toLowerCase();
-      const images = gallery.querySelectorAll('a');
+      const items = gallery.querySelectorAll('a, .video-container');
 
-      images.forEach(anchor => {
-        const alt = anchor.querySelector('img').alt.toLowerCase();
-        anchor.style.display = alt.includes(query) ? 'block' : 'none';
+      items.forEach(item => {
+        const img = item.querySelector('img');
+        const alt = img ? img.alt.toLowerCase() : item.querySelector('video')?.dataset.alt.toLowerCase();
+        item.style.display = alt && alt.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Mute/unmute logic
+    document.querySelectorAll('.video-container').forEach(container => {
+      const video = container.querySelector('video');
+      const button = container.querySelector('.mute-toggle');
+
+      button.addEventListener('click', e => {
+        e.preventDefault();
+        video.muted = !video.muted;
+        button.textContent = video.muted ? '🔇' : '🔊';
       });
     });
   </script>
