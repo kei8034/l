@@ -53,6 +53,7 @@
       background: #333;
       transform: scale(1.05);
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      background-image:url('https://pbs.twimg.com/media/Gmbq3QgXoAE-gLI?format=jpg&name=4096x4096');
     }
 
     @media (max-width: 600px) {
@@ -63,7 +64,14 @@
   </style>
 </head>
 <body>
+<div id="lock-screen" class="active">
+    <h1>Enter Password</h1>
+    <input type="password" id="password" placeholder="Password..." />
+    <button onclick="unlock()">Unlock</button>
+    <p id="error" style="color:red; display:none;">Incorrect password.</p>
+  </div>
 
+  
   <h1>Welcome to My Site</h1>
 
   <div class="button-grid">
