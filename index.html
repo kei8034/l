@@ -121,7 +121,40 @@
   pointer-events: none;
 }
 
+aside.quick-links {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  width: 200px;
+  backdrop-filter: blur(6px);
+  background-image:url('https://files.catbox.moe/cm8p7b.jpeg');
+}
 
+aside.quick-links h2 {
+  margin-top: 0;
+  font-size: 18px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+aside.quick-links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+aside.quick-links a:hover {
+  color: #ccc;
+}
     
   </style>
 </head>
@@ -139,6 +172,19 @@
   
   <!-- Main Content -->
   <div id="main-content">
+
+<aside class="quick-links">
+  <h2>Quick Links</h2>
+  <a href="https://x.com/_brattyluna">luna</a>
+  <a href="https://gelbooru.com/index.php?page=post&s=view&id=7975793&tags=lostwind10">gelbooru</a>
+  <a href="https://www.pixiv.net/en/users/94687683/bookmarks/artworks">pixiv bookmarks</a>
+  <a href="https://www.reddit.com/user/Firm_Rip9350/saved/">reddit saved</a>
+  <a href="https://x.com/i/bookmarks">x bookmarks</a>
+</aside>
+
+
+
+    
     <h1>Welcome to My Site</h1>
     <div class="button-grid">
       <a href="creations.html">lewdcreations</a>
