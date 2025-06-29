@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitter Profile Widget</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      color: white;
+      font-family: sans-serif;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="padding: 20px;">Welcome to My Twitter Embed Page</h1>
+
+  <script>
+    (function () {
+      if (document.getElementById('twitter-profile-feed')) return;
+
+      const container = document.createElement('div');
+      container.id = 'twitter-profile-feed';
+      container.style.position = 'fixed';
+      container.style.bottom = '20px';
+      container.style.left = '20px';
+      container.style.width = '350px';
+      container.style.height = '500px';
+      container.style.overflow = 'auto';
+      container.style.zIndex = '9999';
+      container.style.background = 'rgba(0,0,0,0.5)';
+      container.style.borderRadius = '12px';
+      container.style.backdropFilter = 'blur(6px)';
+      container.style.padding = '8px';
+
+      const timeline = document.createElement('a');
+      timeline.className = 'twitter-timeline';
+      timeline.href = 'https://twitter.com/LewdCreationsAI?ref_src=twsrc%5Etfw';
+      timeline.setAttribute('data-theme', 'dark');
+      timeline.setAttribute('data-height', '500');
+      timeline.textContent = 'Tweets by @LewdCreationsAI';
+
+      container.appendChild(timeline);
+      document.body.appendChild(container);
+
+      if (!window.twttr) {
+        const script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        script.charset = 'utf-8';
+        script.onload = () => {
+          if (window.twttr) {
+            window.twttr.widgets.load(container);
+          }
+        };
+        document.body.appendChild(script);
+      } else {
+        window.twttr.widgets.load(container);
+      }
+    })();
+  </script>
+
+</body>
+</html>
