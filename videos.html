@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Gallery</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Video Gallery</h1>
+  <div class="grid" id="videoGrid"></div>
+
+  <script>
+    // List of your video files in the 'videos' folder
+    const videoFiles = [
+      "video1.mp4",
+      "video2.mp4",
+      "video3.mp4"
+    ];
+
+    const grid = document.getElementById("videoGrid");
+
+    videoFiles.forEach(file => {
+      const card = document.createElement("div");
+      card.className = "video-card";
+
+      const video = document.createElement("video");
+      video.src = `videos/${file}`;
+      video.controls = true;
+
+      card.appendChild(video);
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
