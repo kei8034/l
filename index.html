@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Twitter Profile Widget</title>
+  <title>Protected Twitter Widget</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <style>
     body {
       margin: 0;
@@ -11,17 +12,57 @@
       color: white;
       font-family: sans-serif;
       height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #locked, #unlocked {
+      display: none;
+    }
+    .container {
+      text-align: center;
+    }
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-top: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-  <h1 style="padding: 20px;">Welcome to My Twitter Embed Page</h1>
+  <div id="locked" class="container">
+    <h2>🔒 Enter Password</h2>
+    <input type="password" id="pw" placeholder="Password" />
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="error" style="color: red;"></p>
+  </div>
+
+  <div id="unlocked">
+    <h1 style="padding: 20px;">Protected Twitter Embed</h1>
+  </div>
 
   <script>
-    (function () {
-      if (document.getElementById('twitter-profile-feed')) return;
+    const correctPassword = 'let'; // 🔑 Set your password here
 
+    function checkPassword() {
+      const input = document.getElementById('pw').value;
+      const error = document.getElementById('error');
+      if (input === correctPassword) {
+        document.getElementById('locked').style.display = 'none';
+        document.getElementById('unlocked').style.display = 'block';
+        loadTwitterWidget();
+      } else {
+        error.textContent = 'Incorrect password.';
+      }
+    }
+
+    function loadTwitterWidget() {
       const container = document.createElement('div');
       container.id = 'twitter-profile-feed';
       container.style.position = 'fixed';
@@ -51,16 +92,15 @@
         script.src = 'https://platform.twitter.com/widgets.js';
         script.async = true;
         script.charset = 'utf-8';
-        script.onload = () => {
-          if (window.twttr) {
-            window.twttr.widgets.load(container);
-          }
-        };
+        script.onload = () => window.twttr?.widgets?.load(container);
         document.body.appendChild(script);
       } else {
         window.twttr.widgets.load(container);
       }
-    })();
+    }
+
+    // Show lock screen on page load
+    document.getElementById('locked').style.display = 'block';
   </script>
 
 </body>
