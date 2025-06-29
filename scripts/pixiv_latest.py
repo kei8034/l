@@ -1,27 +1,24 @@
-# pixiv_latest.py
-
-from pixivpy3 import AppPixivAPI
+import os
 import json
+from pixivpy3 import AppPixivAPI
 
-# Your Pixiv refresh token (get via gppt or other tool)
-REFRESH_TOKEN = "YOUR_REFRESH_TOKEN"
-USER_ID = "YOUR_USER_ID"  # Replace with your actual Pixiv numeric user ID
+USERNAME = os.environ['PIXIV_USERNAME']
+PASSWORD = os.environ['PIXIV_PASSWORD']
 
-# Initialize Pixiv API
 api = AppPixivAPI()
-api.auth(refresh_token=REFRESH_TOKEN)
+api.login(USERNAME, PASSWORD)
 
-# Get latest public bookmark
-result = api.user_bookmarks_illust(user_id=USER_ID, restrict="public")
-if result.illusts:
-    illust = result.illusts[0]
-    data = {
-        "title": illust.title,
-        "artist": illust.user.name,
-        "url": f"https://www.pixiv.net/en/artworks/{illust.id}",
-        "image": illust.image_urls.medium
+# get latest bookmark
+json_result = api.user_bookmarks_illust(user_id=YOUR_USER_ID, restrict='public')
+
+# Save latest post
+if json_result.illusts:
+    latest = json_result.illusts[0]
+    output = {
+        "title": latest.title,
+        "image_url": latest.image_urls.large,
+        "link": f"https://www.pixiv.net/en/artworks/{latest.id}"
     }
 
-    # Save to JSON for web access
-    with open("static/latest_pixiv.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    with open("latest.json", "w") as f:
+        json.dump(output, f)
