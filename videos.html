@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Video Gallery</title>
+  <title>My Videos</title>
   <style>
     body {
       background: #111;
@@ -18,53 +18,63 @@
       margin-bottom: 30px;
     }
 
-    .grid {
+    #videoGrid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .video-card {
       background: #222;
       border-radius: 12px;
       padding: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
     }
 
     video {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
       display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1>My Video Gallery</h1>
-  <div class="grid" id="videoGrid"></div>
+  <h1>📺 My Video Gallery</h1>
+  <div id="videoGrid"></div>
 
   <script>
-    // List of your video files in the 'videos' folder
-    const videoFiles = [
-      "video1.mp4",
-      "video2.mp4",
-      "video3.mp4"
-    ];
+    fetch("videoList.json")
+      .then(res => res.json())
+      .then(videoFiles => {
+        const grid = document.getElementById("videoGrid");
 
-    const grid = document.getElementById("videoGrid");
+        videoFiles.forEach(file => {
+          const card = document.createElement("div");
+          card.className = "video-card";
 
-    videoFiles.forEach(file => {
-      const card = document.createElement("div");
-      card.className = "video-card";
+          const video = document.createElement("video");
+          video.src = `videos/${file}`;
+          video.controls = true;
 
-      const video = document.createElement("video");
-      video.src = `videos/${file}`;
-      video.controls = true;
-
-      card.appendChild(video);
-      grid.appendChild(card);
-    });
+          card.appendChild(video);
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error("Failed to load video list:", err);
+        const grid = document.getElementById("videoGrid");
+        grid.innerHTML = "<p style='text-align:center;'>Failed to load videos.</p>";
+      });
   </script>
 
 </body>
 </html>
+
