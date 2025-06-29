@@ -66,7 +66,6 @@
       justify-content: center;
       text-align: center;
       padding: 40px 20px;
-
     }
 
     h1 {
@@ -146,19 +145,27 @@
     function unlock() {
       const input = document.getElementById("password").value;
       if (input === correctPassword) {
-        document.getElementById("lock-screen").style.display = "none";
-        document.getElementById("main-content").style.display = "flex";
-
- document.body.style.backgroundImage = "url('https://pbs.twimg.com/media/GqdvMaJXsAAuoVr?format=jpg&name=4096x4096')";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundAttachment = "fixed";
-
-        
+        sessionStorage.setItem("isUnlocked", "true");
+        showMainContent();
       } else {
         document.getElementById("error").style.display = "block";
       }
+    }
+
+    function showMainContent() {
+      document.getElementById("lock-screen").style.display = "none";
+      document.getElementById("main-content").style.display = "flex";
+
+      document.body.style.backgroundImage = "url('https://pbs.twimg.com/media/GqdvMaJXsAAuoVr?format=jpg&name=4096x4096')";
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundAttachment = "fixed";
+    }
+
+    // Automatically unlock if session is active
+    if (sessionStorage.getItem("isUnlocked") === "true") {
+      showMainContent();
     }
 
     // Enter key shortcut
