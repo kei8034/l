@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome Landing</title>
   <style>
-    * {
+   * {
       box-sizing: border-box;
     }
 
@@ -15,16 +15,52 @@
       background: linear-gradient(135deg, #111, #1a1a1a);
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
       display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lock-screen, #main-content {
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      text-align: center;
+    }
+
+    #lock-screen.active, #main-content.active {
+      display: flex;
+    }
+
+    input[type="password"] {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      background: #222;
+      color: white;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #444;
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .button-grid {
@@ -34,6 +70,7 @@
       max-width: 800px;
       width: 100%;
       padding: 0 20px;
+      background-image:url('https://pbs.twimg.com/media/GqdvMZrX0AAFDYD?format=jpg&name=4096x4096');
     }
 
     .button-grid a {
@@ -53,7 +90,6 @@
       background: #333;
       transform: scale(1.05);
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      background-image:url('https://pbs.twimg.com/media/Gmbq3QgXoAE-gLI?format=jpg&name=4096x4096');
     }
 
     @media (max-width: 600px) {
