@@ -1,48 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Twitter Embed – Nintendo Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tweet Image Grid</title>
   <style>
     body {
-      background-color: #111;
+      background: #111;
       color: white;
-      margin: 0;
-      padding: 0;
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
+      padding: 20px;
+      margin: 0;
     }
-    .container {
-      margin-top: 30px;
-      width: 400px;
-      max-width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      padding: 10px;
-      backdrop-filter: blur(6px);
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .grid a {
+      display: block;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid #444;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .grid a:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .grid img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1 style="margin-top: 20px;">🕹️ Nintendo Store Tweets</h1>
+  <h1>LewdCreationsAI Tweet Gallery</h1>
 
-  <div class="container">
-    <a class="twitter-timeline"
-       data-theme="dark"
-       data-height="600"
-       href="https://twitter.com/NintendoStoreUS?ref_src=twsrc%5Etfw">
-       Tweets by @NintendoStoreUS
+  <div class="grid">
+    <a href="https://x.com/LewdCreationsAI/status/1938717616320790903/photo/3" target="_blank">
+      <img src="https://x.com/LewdCreationsAI/status/1938717616320790903/photo/3" alt="Tweet 1" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1903800514528131183/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GJzfu4dWwAAQaxr?format=jpg&name=medium" alt="Tweet 2" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1902931138372950180/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GJju8eVW4AAlK41?format=jpg&name=medium" alt="Tweet 3" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1902017104301107682/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GJXmVKTXgAAyCMf?format=jpg&name=medium" alt="Tweet 4" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1901390980320350464/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GJNEEtgX0AAuVeQ?format=jpg&name=medium" alt="Tweet 5" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1900487383515314336/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GI4vTzTXAAACtEx?format=jpg&name=medium" alt="Tweet 6" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1899741421654221200/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GItIOnJW4AAjDTh?format=jpg&name=medium" alt="Tweet 7" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1898927791586404496/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIh_cZFXQAAjM-J?format=jpg&name=medium" alt="Tweet 8" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1898290039316742494/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIX8-KcWgAEZhNG?format=jpg&name=medium" alt="Tweet 9" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1897647198942466110/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIMvHc1WgAANfI1?format=jpg&name=medium" alt="Tweet 10" />
     </a>
   </div>
-
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
