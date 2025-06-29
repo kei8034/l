@@ -38,26 +38,20 @@
   </style>
 </head>
 <body>
-  <div class="pixiv-container" id="pixivBookmark">
-    <p>Loading latest bookmark...</p>
-  </div>
+  <div id="pixiv">
+  <h2>Latest Pixiv Bookmark</h2>
+  <a id="pixiv-link" href="" target="_blank">
+    <img id="pixiv-image" src="" alt="Latest Artwork" style="max-width:100%;" />
+  </a>
+</div>
 
-  <script>
-    fetch("static/latest_pixiv.json")
-      .then(res => res.json())
-      .then(data => {
-        const html = `
-          <a href="${data.url}" target="_blank">
-            <img src="${data.image}" alt="${data.title}" />
-          </a>
-          <p><strong>${data.title}</strong><br>by ${data.artist}</p>
-        `;
-        document.getElementById("pixivBookmark").innerHTML = html;
-      })
-      .catch(err => {
-        console.error("Error loading Pixiv data", err);
-        document.getElementById("pixivBookmark").innerHTML = "<p>Couldn't load bookmark.</p>";
-      });
-  </script>
+<script>
+  fetch('latest.json')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('pixiv-link').href = data.link;
+      document.getElementById('pixiv-image').src = data.image_url;
+    });
+</script>
 </body>
 </html>
