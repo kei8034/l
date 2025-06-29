@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>luna Tweet Gallery</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    #searchBar {
+      display: block;
+      margin: 0 auto 30px auto;
+      max-width: 400px;
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: white;
+    }
+
+    .gallery a {
+      display: block;
+      margin-bottom: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      transition: opacity 0.2s ease;
+    }
+
+    .gallery img:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>LewdCreationsAI Tweet Gallery</h1>
+  <input type="text" id="searchBar" placeholder="Search by tweet label... (e.g. 'Tweet 3')" />
+
+  <div class="gallery" id="imageGallery">
+    <a href="https://x.com/_brattyluna/status/1924951473101648186/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GrbNJo-XgAA4xPb?format=jpg&name=4096x4096" alt="feet" />
+    </a>
+    <a href="https://x.com/_brattyluna/status/1924502301852438897/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GrU0jhyWEAIPuaL?format=jpg&name=4096x4096" alt="feet" />
+    </a>
+    <a href="https://x.com/_brattyluna/status/1938622530735976535/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/Gude6PzWoAARyUj?format=jpg&name=large" alt="body" />
+    </a>
+    <a href="https://x.com/_brattyluna/status/1924498975349936149/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GrUxmrcXAAAwSY1?format=jpg&name=4096x4096" alt="body" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1901390980320350464/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GJNEEtgX0AAuVeQ?format=jpg&name=medium" alt="Tweet 5" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1900487383515314336/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GI4vTzTXAAACtEx?format=jpg&name=medium" alt="Tweet 6" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1899741421654221200/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GItIOnJW4AAjDTh?format=jpg&name=medium" alt="Tweet 7" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1898927791586404496/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIh_cZFXQAAjM-J?format=jpg&name=medium" alt="Tweet 8" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1898290039316742494/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIX8-KcWgAEZhNG?format=jpg&name=medium" alt="Tweet 9" />
+    </a>
+    <a href="https://x.com/LewdCreationsAI/status/1897647198942466110/photo/1" target="_blank">
+      <img src="https://pbs.twimg.com/media/GIMvHc1WgAANfI1?format=jpg&name=medium" alt="Tweet 10" />
+    </a>
+  </div>
+
+  <script>
+    const searchBar = document.getElementById('searchBar');
+    const gallery = document.getElementById('imageGallery');
+
+    searchBar.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const images = gallery.querySelectorAll('a');
+
+      images.forEach(anchor => {
+        const alt = anchor.querySelector('img').alt.toLowerCase();
+        anchor.style.display = alt.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
