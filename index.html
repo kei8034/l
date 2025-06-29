@@ -110,6 +110,10 @@
         font-size: 2rem;
       }
     }
+
+
+
+    
   </style>
 </head>
 <body>
@@ -122,6 +126,8 @@
     <p id="error" style="color:red; display:none;">Incorrect password.</p>
   </div>
 
+
+  
   <!-- Main Content -->
   <div id="main-content">
     <h1>Welcome to My Site</h1>
@@ -156,11 +162,14 @@
       document.getElementById("lock-screen").style.display = "none";
       document.getElementById("main-content").style.display = "flex";
 
-      document.body.style.backgroundImage = "url('https://files.catbox.moe/r78u1n.mp4')";
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
-      document.body.style.backgroundRepeat = "no-repeat";
-      document.body.style.backgroundAttachment = "fixed";
+       const video = document.createElement("video");
+  video.id = "bgVideo";
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.innerHTML = '<source src="https://files.catbox.moe/r78u1n.mp4" type="video/mp4">';
+  document.body.prepend(video);
     }
 
     // Automatically unlock if session is active
