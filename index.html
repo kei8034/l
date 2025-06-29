@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LewdCreationsAI Tweet Gallery</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       background: #111;
       color: white;
@@ -19,35 +15,24 @@
 
     h1 {
       text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gallery a {
+      display: block;
       margin-bottom: 30px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
-
-    .grid a {
-      display: block;
+    .gallery img {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
-      transition: transform 0.2s ease;
       border-radius: 12px;
+      transition: opacity 0.2s ease;
     }
 
-    .grid a:hover img {
-      transform: scale(1.03);
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    .gallery img:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -55,7 +40,7 @@
 
   <h1>LewdCreationsAI Tweet Gallery</h1>
 
-  <div class="grid">
+  <div class="gallery">
     <a href="https://x.com/LewdCreationsAI/status/1938717616320790903/photo/3" target="_blank">
       <img src="https://pbs.twimg.com/media/Gue1XRMX0AA-1Vf?format=jpg&name=4096x4096" alt="Tweet 1" />
     </a>
