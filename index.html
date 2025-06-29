@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome Landing</title>
   <style>
-   * {
+    * {
       box-sizing: border-box;
     }
 
@@ -16,24 +16,25 @@
       color: white;
       font-family: 'Segoe UI', sans-serif;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    #lock-screen, #main-content {
-      display: none;
+    #lock-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 9999;
       text-align: center;
     }
 
-    #lock-screen.active, #main-content.active {
-      display: flex;
-    }
-
-    input[type="password"] {
+    #lock-screen input[type="password"] {
       padding: 12px;
       font-size: 16px;
       border: none;
@@ -44,7 +45,7 @@
       color: white;
     }
 
-    button {
+    #lock-screen button {
       padding: 10px 20px;
       font-size: 16px;
       border: none;
@@ -54,8 +55,17 @@
       cursor: pointer;
     }
 
-    button:hover {
+    #lock-screen button:hover {
       background: #444;
+    }
+
+    #main-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
     }
 
     h1 {
@@ -69,8 +79,11 @@
       gap: 20px;
       max-width: 800px;
       width: 100%;
-      padding: 0 20px;
-      background-image:url('https://pbs.twimg.com/media/GqdvMZrX0AAFDYD?format=jpg&name=4096x4096');
+      padding: 20px;
+      background-image: url('https://pbs.twimg.com/media/GqdvMZrX0AAFDYD?format=jpg&name=4096x4096');
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
     }
 
     .button-grid a {
@@ -84,6 +97,7 @@
       text-decoration: none;
       font-size: 16px;
       transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
     }
 
     .button-grid a:hover {
@@ -100,28 +114,50 @@
   </style>
 </head>
 <body>
-<div id="lock-screen" class="active">
+
+  <!-- Lock Screen -->
+  <div id="lock-screen">
     <h1>Enter Password</h1>
     <input type="password" id="password" placeholder="Password..." />
     <button onclick="unlock()">Unlock</button>
     <p id="error" style="color:red; display:none;">Incorrect password.</p>
   </div>
 
-  
-  <h1>Welcome to My Site</h1>
-
-  <div class="button-grid">
-    <a href="creations.html">lewdcreations</a>
-    <a href="videos.html">luna</a>
-    <a href="music.html">quuv</a>
-    <a href="art.html">Art</a>
-    <a href="about.html">About Me</a>
-    <a href="contact.html">Contact</a>
-    <a href="downloads.html">Downloads</a>
-    <a href="social.html">Social Links</a>
-    <a href="blog.html">Blog</a>
-    <a href="extras.html">Extras</a>
+  <!-- Main Content -->
+  <div id="main-content">
+    <h1>Welcome to My Site</h1>
+    <div class="button-grid">
+      <a href="creations.html">lewdcreations</a>
+      <a href="videos.html">luna</a>
+      <a href="music.html">quuv</a>
+      <a href="art.html">Art</a>
+      <a href="about.html">About Me</a>
+      <a href="contact.html">Contact</a>
+      <a href="downloads.html">Downloads</a>
+      <a href="social.html">Social Links</a>
+      <a href="blog.html">Blog</a>
+      <a href="extras.html">Extras</a>
+    </div>
   </div>
+
+  <script>
+    const correctPassword = "let";
+
+    function unlock() {
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("lock-screen").style.display = "none";
+        document.getElementById("main-content").style.display = "flex";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+
+    // Enter key shortcut
+    document.getElementById("password").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") unlock();
+    });
+  </script>
 
 </body>
 </html>
