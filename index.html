@@ -15,7 +15,21 @@
 
     h1 {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
+    }
+
+    #searchBar {
+      display: block;
+      margin: 0 auto 30px auto;
+      max-width: 400px;
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: white;
     }
 
     .gallery a {
@@ -39,8 +53,9 @@
 <body>
 
   <h1>LewdCreationsAI Tweet Gallery</h1>
+  <input type="text" id="searchBar" placeholder="Search by tweet label... (e.g. 'Tweet 3')" />
 
-  <div class="gallery">
+  <div class="gallery" id="imageGallery">
     <a href="https://x.com/LewdCreationsAI/status/1938717616320790903/photo/3" target="_blank">
       <img src="https://pbs.twimg.com/media/Gue1XRMX0AA-1Vf?format=jpg&name=4096x4096" alt="Tweet 1" />
     </a>
@@ -72,6 +87,21 @@
       <img src="https://pbs.twimg.com/media/GIMvHc1WgAANfI1?format=jpg&name=medium" alt="Tweet 10" />
     </a>
   </div>
+
+  <script>
+    const searchBar = document.getElementById('searchBar');
+    const gallery = document.getElementById('imageGallery');
+
+    searchBar.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const images = gallery.querySelectorAll('a');
+
+      images.forEach(anchor => {
+        const alt = anchor.querySelector('img').alt.toLowerCase();
+        anchor.style.display = alt.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
 
 </body>
 </html>
