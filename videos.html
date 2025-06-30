@@ -50,30 +50,25 @@
   <h1>📺 My Video Gallery</h1>
   <div id="videoGrid"></div>
 
-  <script>
-    fetch("videoList.json")
-      .then(res => res.json())
-      .then(videoFiles => {
-        const grid = document.getElementById("videoGrid");
-
-        videoFiles.forEach(file => {
-          const card = document.createElement("div");
-          card.className = "video-card";
-
-          const video = document.createElement("video");
-          video.src = `videos/${file}`;
-          video.controls = true;
-
-          card.appendChild(video);
-          grid.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error("Failed to load video list:", err);
-        const grid = document.getElementById("videoGrid");
-        grid.innerHTML = "<p style='text-align:center;'>Failed to load videos.</p>";
+ <script>
+  fetch('videoList.json')
+    .then(res => res.json())
+    .then(videoFiles => {
+      const container = document.getElementById('videoGallery');
+      videoFiles.forEach(file => {
+        const video = document.createElement('video');
+        video.src = 'videos/' + encodeURIComponent(file);
+        video.controls = true;
+        video.style.width = '100%';
+        video.style.marginBottom = '20px';
+        container.appendChild(video);
       });
-  </script>
+    })
+    .catch(err => {
+      console.error('Failed to load video list:', err);
+    });
+</script>
+
 
 </body>
 </html>
